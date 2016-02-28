@@ -14,8 +14,9 @@ primes << 2
 end
 
 max_prime_polindrome = 0
-primes.reverse.each do |prime|
-  max_prime_polindrome = prime if (prime.to_s == prime.to_s.reverse) && prime > max_prime_polindrome
+primes.reverse_each do |prime|
+  max_prime_polindrome = prime if (prime.to_s == prime.to_s.reverse) &&
+                                  prime > max_prime_polindrome
 end
 
 p max_prime_polindrome

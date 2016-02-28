@@ -6,16 +6,16 @@ File.open(ARGV[0]).each_line do |line|
 
   arr = []
   1.upto(n) do |i|
-    case
-    when (i % x == 0) && (i % y == 0)
-      arr << 'FB'
-    when i % x == 0
-      arr << 'F'
-    when i % y == 0
-      arr << 'B'
-    else
-      arr << i
-    end
+    arr << case
+           when (i % x == 0) && (i % y == 0)
+             'FB'
+           when i % x == 0
+             'F'
+           when i % y == 0
+             'B'
+           else
+             i
+           end
   end
   puts arr.join(' ')
 end
