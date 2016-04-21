@@ -12,8 +12,8 @@ File.open(ARGV[0]).each_line do |line|
   end
   sum_of_string = 0
   beautiful_string.sort_by { |_key, value| value }
-    .to_h.values.reverse_each.with_index do |number, index|
-      sum_of_string += number * (26 - index)
+                  .to_h.values.reverse_each.with_index do |number, index|
+    sum_of_string += number * (26 - index)
   end
   puts sum_of_string
   # puts beautiful_string.sort_by { |key, value| value }.to_h.values.reverse

@@ -8,11 +8,7 @@ file.each_line do |line|
     search_string << chr
     case
     when string.length % search_string.length == 0
-      if string == search_string * (string.length / search_string.length)
-        break
-      else
-        next
-      end
+      break if string == search_string * (string.length / search_string.length)
     when string.length % search_string.length != 0
       next
     end

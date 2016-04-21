@@ -1,8 +1,8 @@
 current_location = 0
 File.read(ARGV[0]).each_line.with_index do |line, index|
-  line.chomp.gsub('_', '|') if index == 0
+  line.chomp.tr('_', '|') if index == 0
   if index == 0
-    puts line.chomp.gsub('_', '|')
+    puts line.chomp.tr('_', '|')
     current_location = line.chomp.index('_')
     next
   end
