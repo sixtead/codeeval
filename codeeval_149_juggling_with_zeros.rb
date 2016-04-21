@@ -1,5 +1,5 @@
 File.read(ARGV[0]).each_line do |line|
-  arr =  line.chomp.split(' ').partition.with_index(1) { |e, i| i.odd? }
+  arr =  line.chomp.split(' ').partition.with_index(1) { |_e, i| i.odd? }
   flag = arr.first
   seq_of_zrs = arr.last
 
