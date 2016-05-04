@@ -1,9 +1,21 @@
+# class of Knight from chess
 class Knight
   attr_accessor :v_pos, :h_pos
 
-  BOARD = []
-  'a'.upto('h') { |h| '1'.upto('8') { |v| BOARD << "#{h}#{v}" } }
-  BOARD.freeze
+  board = []
+  'a'.upto('h') { |h| '1'.upto('8') { |v| board << "#{h}#{v}" } }
+  BOARD = board.freeze
+
+  MOVES_HASH = {
+    left_down: [-2, -1],
+    left_up: [-2, 1],
+    down_left: [-1, -2],
+    up_left: [-1, 2],
+    down_right: [1, -2],
+    up_right: [1, 2],
+    right_down: [2, -1],
+    right_up: [2, 1]
+  }.freeze
 
   def initialize(pos)
     @v_pos = pos.chars[1].to_i
@@ -11,29 +23,11 @@ class Knight
   end
 
   def possible_moves
-    moves = []
-
-    moves << "#{(@h_pos.ord - 2).chr}#{@v_pos - 1}" if BOARD.include?(
-      "#{(@h_pos.ord - 2).chr}#{@v_pos - 1}")
-    moves << "#{(@h_pos.ord - 2).chr}#{@v_pos + 1}" if BOARD.include?(
-      "#{(@h_pos.ord - 2).chr}#{@v_pos + 1}")
-
-    moves << "#{(@h_pos.ord - 1).chr}#{@v_pos - 2}" if BOARD.include?(
-      "#{(@h_pos.ord - 1).chr}#{@v_pos - 2}")
-    moves << "#{(@h_pos.ord - 1).chr}#{@v_pos + 2}" if BOARD.include?(
-      "#{(@h_pos.ord - 1).chr}#{@v_pos + 2}")
-
-    moves << "#{(@h_pos.ord + 1).chr}#{@v_pos - 2}" if BOARD.include?(
-      "#{(@h_pos.ord + 1).chr}#{@v_pos - 2}")
-    moves << "#{(@h_pos.ord + 1).chr}#{@v_pos + 2}" if BOARD.include?(
-      "#{(@h_pos.ord + 1).chr}#{@v_pos + 2}")
-
-    moves << "#{(@h_pos.ord + 2).chr}#{@v_pos - 1}" if BOARD.include?(
-      "#{(@h_pos.ord + 2).chr}#{@v_pos - 1}")
-    moves << "#{(@h_pos.ord + 2).chr}#{@v_pos + 1}" if BOARD.include?(
-      "#{(@h_pos.ord + 2).chr}#{@v_pos + 1}")
-
-    moves
+    MOVES_HASH.values.map do |val|
+      if BOARD.include? "#{(@h_pos.ord + val[0]).chr}#{@v_pos + val[1]}"
+        "#{(@h_pos.ord + val[0]).chr}#{@v_pos + val[1]}"
+      end
+    end .compact
   end
 end
 
