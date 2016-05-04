@@ -24,9 +24,8 @@ class Knight
 
   def possible_moves
     MOVES_HASH.values.map do |val|
-      if BOARD.include? "#{(@h_pos.ord + val[0]).chr}#{@v_pos + val[1]}"
-        "#{(@h_pos.ord + val[0]).chr}#{@v_pos + val[1]}"
-      end
+      new_pos = "#{(@h_pos.ord + val[0]).chr}#{@v_pos + val[1]}"
+      new_pos if BOARD.include? new_pos
     end .compact
   end
 end
